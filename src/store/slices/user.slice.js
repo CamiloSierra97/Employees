@@ -19,5 +19,5 @@ export const getUserInfo = () => (dispatch) => {
   return axios
     .get(URL, getConfig())
     .then((res) => dispatch(setUser(res.data)))
-    .catch(console.log((err) => console.log(err)));
+    .catch((err) => console.log(err));
 };

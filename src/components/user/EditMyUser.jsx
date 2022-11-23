@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 const EditMyUser = () => {
   const userInfo = useSelector((state) => state.user);
-  const { handleSubmit, register,  reset } = useForm();
+  const { handleSubmit, register, reset } = useForm();
 
   const submit = (data) => {
     const URL = `https://employees-service-xh3x.onrender.com/api/v1/users/${userInfo?.id}`;
@@ -14,6 +14,7 @@ const EditMyUser = () => {
       .patch(URL, userId, data)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+    reset({});
   };
 
   return (

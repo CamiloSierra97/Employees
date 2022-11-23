@@ -10,6 +10,7 @@ import MyEmployees from "./components/user/MyEmployees";
 import UserInfo from "./components/user/UserInfo";
 import EditMyUser from "./components/user/EditMyUser";
 import EditEmployee from "./components/employees/EditEmployee";
+import CreateEmployee from "./components/employees/CreateEmployee";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ function App() {
           <Route path="/me" element={<UserInfo />} />
           <Route path="/me/edit" element={<EditMyUser />} />
           <Route path="/my_employees" element={<MyEmployees />} />
-          <Route path="/my_employees/edit" element={<EditEmployee />} />
+          <Route path="/employees/:id" element={<EditEmployee />} />
+          <Route path="/create_employee" element={<CreateEmployee />} />
         </Route>
       </Routes>
     </div>

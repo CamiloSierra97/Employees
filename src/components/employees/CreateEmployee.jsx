@@ -1,19 +1,16 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 import getConfig from "../../utils/getConfig";
 
-const EditEmployee = () => {
+const CreateEmployee = () => {
   const { handleSubmit, register, reset } = useForm();
 
-  const employee = useParams();
-  console.log(employee.id);
-
   const submit = (data) => {
-    const URL = `https://employees-service-xh3x.onrender.com/api/v1/employees/${employee.id}`;
+    const URL = `https://employees-service-xh3x.onrender.com/api/v1/employees/my_employees/`;
+    console.log(data);
     axios
-      .patch(URL, data, getConfig())
+      .post(URL, data, getConfig())
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     reset({});
@@ -50,11 +47,10 @@ const EditEmployee = () => {
               Phone
             </label>
             <input
-              {...register("phone-")}
+              {...register("phone")}
               className="login__input"
               type="text"
               id="phone"
-              // onChange={userInfo?.phone}
             />
           </div>
           <div className="edit__div">
@@ -77,7 +73,6 @@ const EditEmployee = () => {
               className="login__input"
               type="text"
               id="gender"
-              // value={userInfo?.gender}
             />
           </div>
           <div className="edit__div">
@@ -89,14 +84,80 @@ const EditEmployee = () => {
               className="login__input"
               type="text"
               id="country"
-              // onChange={userInfo?.country}
             />
           </div>
-          <button>Update</button>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="identificationCardType">
+              Identification Card Type
+            </label>
+            <input
+              {...register("identificationCardType")}
+              className="login__input"
+              type="text"
+              id="identificationCardType"
+            />
+          </div>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="identificationCardNumber">
+              Identification Card Number
+            </label>
+            <input
+              {...register("identificationCardNumber")}
+              className="login__input"
+              type="text"
+              id="identificationCardNumber"
+            />
+          </div>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="address">
+              Address
+            </label>
+            <input
+              {...register("address")}
+              className="login__input"
+              type="text"
+              id="address"
+            />
+          </div>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="userId">
+              User Id
+            </label>
+            <input
+              {...register("userId")}
+              className="login__input"
+              type="text"
+              id="userId"
+            />
+          </div>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="address">
+              Area Id
+            </label>
+            <input
+              {...register("areaId")}
+              className="login__input"
+              type="text"
+              id="areaId"
+            />
+          </div>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="address">
+              Subarea Id
+            </label>
+            <input
+              {...register("subareaId")}
+              className="login__input"
+              type="text"
+              id="subareaId"
+            />
+          </div>
+
+          <button>Create</button>
         </form>
       </article>
     </div>
   );
 };
 
-export default EditEmployee;
+export default CreateEmployee;

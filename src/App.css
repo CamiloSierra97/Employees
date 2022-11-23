@@ -211,7 +211,7 @@ button:active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20%;
+  padding: 6%;
 }
 
 .article_container-btn {
@@ -232,15 +232,26 @@ button:active {
   font-size: 2.1rem;
 }
 
+.article_container-user-div {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8%;
+}
+
+.article__container-main {
+  width: 100vw;
+}
+
 .article__container-user {
   display: flex;
-  justify-content: start;
-  width: 100%;
-  padding-left: 1%;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  margin-bottom: 2%;
 }
 
 .article__container-user-info {
-  height: 58vh;
+  height: 48vh;
 }
 
 .edit__container {
@@ -252,6 +263,33 @@ button:active {
 
 .edit__form {
   column-gap: 5%;
+}
+
+.employee__card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px;
+}
+
+.employee__card-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 25%;
+  border-radius: 20px;
+  background-color: #e0dada;
+  padding: 1.5%;
+}
+
+.employee__card-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee__card-items {
+  margin: 8px;
 }
 
 ::-webkit-scrollbar {
