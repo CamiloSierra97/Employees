@@ -2,20 +2,22 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import getConfig from "../../utils/getConfig";
 
 const EditMyUser = () => {
-  const userInfo = useSelector((state) => state.user);
   const { handleSubmit, register, reset } = useForm();
 
   const submit = (data) => {
-    const URL = `https://employees-service-xh3x.onrender.com/api/v1/users/${userInfo?.id}`;
-    const userId = userInfo?.id;
+    const URL = `https://employees-service-xh3x.onrender.com/api/v1/users/me`;
     axios
-      .patch(URL, userId, data)
-      .then((res) => console.log(res))
+      .patch(URL, data, getConfig())
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     reset({});
   };
+
+  const userInfo = useSelector((state) => state.user);
+  console.log(userInfo);
 
   return (
     <article className="edit__container">
@@ -51,7 +53,6 @@ const EditMyUser = () => {
             className="login__input"
             type="text"
             id="phone"
-            // onChange={userInfo?.phone}
           />
         </div>
         <div className="edit__div">
@@ -74,7 +75,6 @@ const EditMyUser = () => {
             className="login__input"
             type="text"
             id="gender"
-            // value={userInfo?.gender}
           />
         </div>
         <div className="edit__div">
@@ -86,9 +86,9 @@ const EditMyUser = () => {
             className="login__input"
             type="text"
             id="country"
-            // onChange={userInfo?.country}
           />
         </div>
+        <button>Update</button>
       </form>
     </article>
   );

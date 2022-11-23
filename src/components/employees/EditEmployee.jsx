@@ -8,13 +8,12 @@ const EditEmployee = () => {
   const { handleSubmit, register, reset } = useForm();
 
   const employee = useParams();
-  console.log(employee.id);
 
   const submit = (data) => {
     const URL = `https://employees-service-xh3x.onrender.com/api/v1/employees/${employee.id}`;
     axios
       .patch(URL, data, getConfig())
-      .then((res) => console.log(res))
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     reset({});
   };
@@ -54,7 +53,6 @@ const EditEmployee = () => {
               className="login__input"
               type="text"
               id="phone"
-              // onChange={userInfo?.phone}
             />
           </div>
           <div className="edit__div">
@@ -77,7 +75,6 @@ const EditEmployee = () => {
               className="login__input"
               type="text"
               id="gender"
-              // value={userInfo?.gender}
             />
           </div>
           <div className="edit__div">
@@ -89,7 +86,6 @@ const EditEmployee = () => {
               className="login__input"
               type="text"
               id="country"
-              // onChange={userInfo?.country}
             />
           </div>
           <button>Update</button>

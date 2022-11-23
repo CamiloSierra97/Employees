@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import getConfig from "../../utils/getConfig";
 import EmployeeCard from "../employees/EmployeeCard";
 
 const Employees = () => {
   const [employees, setEmployees] = useState();
   const [pagination, setPagination] = useState();
+  const [allEmployees, setAllEmployees] = useState();
   const [search, setSearch] = useState();
   const [filter, setFilter] = useState();
 
@@ -20,6 +22,7 @@ const Employees = () => {
   };
 
   const nextPage = () => {
+    console.log(pagination);
     axios
       .get(pagination.next, getConfig())
       .then((res) => {
@@ -45,11 +48,19 @@ const Employees = () => {
         setPagination(res.data);
       })
       .catch((err) => console.log(err));
+
+    axios
+      .get(
+        "https://employees-service-xh3x.onrender.com/api/v1/employees/no_pagination",
+        getConfig()
+      )
+      .then((res) => setAllEmployees(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
     setFilter(
-      employees?.filter((e) =>
+      allEmployees?.filter((e) =>
         e.identificationCardNumber.toString().includes(search)
       )
     );
@@ -71,6 +82,11 @@ const Employees = () => {
         <button className="next" onClick={nextPage}>
           NextPage
         </button>
+      </div>
+      <div className="button__container">
+        <NavLink to="/create_employee">
+          <button>Create Employee</button>
+        </NavLink>
       </div>
       <div className="employee__card">
         {filter

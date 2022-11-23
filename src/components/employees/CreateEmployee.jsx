@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import getConfig from "../../utils/getConfig";
 
@@ -104,7 +104,7 @@ const CreateEmployee = () => {
             <input
               {...register("identificationCardNumber")}
               className="login__input"
-              type="text"
+              type="number"
               id="identificationCardNumber"
             />
           </div>
@@ -117,17 +117,6 @@ const CreateEmployee = () => {
               className="login__input"
               type="text"
               id="address"
-            />
-          </div>
-          <div className="edit__div">
-            <label className="login__label" htmlFor="userId">
-              User Id
-            </label>
-            <input
-              {...register("userId")}
-              className="login__input"
-              type="text"
-              id="userId"
             />
           </div>
           <div className="edit__div">
