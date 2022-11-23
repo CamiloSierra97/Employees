@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <header className="header">
-      <NavLink to="/">
+      <NavLink>
         <div className="header__logo__container">
           <h1 className="header__logo">
-            <i className="bx bxs-shopping-bags"></i>
+            <i className="bx bx-paste"></i>
           </h1>
         </div>
       </NavLink>
@@ -16,7 +16,7 @@ const Navbar = () => {
           <li className="header__item">
             <NavLink
               className={({ isActive }) => (isActive ? "link__active" : "link")}
-              to="/login"
+              to="/"
             >
               <p className="header__item-text">Home</p>
             </NavLink>
@@ -24,17 +24,17 @@ const Navbar = () => {
           <li className="header__item">
             <NavLink
               className={({ isActive }) => (isActive ? "link__active" : "link")}
-              to="/purchases"
+              to="/me"
             >
-              <i className="bx bxs-box"></i>
+              <p className="header__item-text">All employees</p>
             </NavLink>
           </li>
           <li className="header__item">
             <NavLink
               className={({ isActive }) => (isActive ? "link__active" : "link")}
-              to="/cart"
+              to="/my_employees"
             >
-              <i className="bx bx-cart-alt"></i>
+              <p className="header__item-text">My employees</p>
             </NavLink>
           </li>
         </ul>

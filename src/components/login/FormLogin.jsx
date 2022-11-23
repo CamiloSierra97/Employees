@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
-  const { register, handleSubmit, reset } = useForm();
   const [showError, setShowError] = useState({
     visibility: "hidden",
   });
+  const { handleSubmit, register, reset } = useForm();
+
+  const navigate = useNavigate();
 
   const passwordValidation = () => {
     setShowError({
@@ -20,6 +23,7 @@ const FormLogin = () => {
       .post(URL, data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        navigate("/me");
       })
       .catch((err) => {
         setShowError({
