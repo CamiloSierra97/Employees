@@ -22,7 +22,6 @@ const Employees = () => {
   };
 
   const nextPage = () => {
-    console.log(pagination);
     axios
       .get(pagination.next, getConfig())
       .then((res) => {
