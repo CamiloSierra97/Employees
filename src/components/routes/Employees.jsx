@@ -59,8 +59,8 @@ const Employees = () => {
 
   useEffect(() => {
     setFilter(
-      allEmployees?.filter((e) =>
-        e.identificationCardNumber.toString().includes(search)
+      allEmployees?.filter((element) =>
+        element.identificationCardNumber.toString().includes(search)
       )
     );
   }, [search]);

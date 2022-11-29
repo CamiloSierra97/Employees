@@ -1,19 +1,51 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import getConfig from "../../utils/getConfig";
 
 const CreateEmployee = () => {
   const { handleSubmit, register, reset } = useForm();
+  const [areas, setAreas] = useState();
+  const [subareas, setSubAreas] = useState();
+  const [selectedArea, setSelectedArea] = useState("Finances");
+  const [subareaFilter, setSubareaFilter] = useState();
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://employees-service-xh3x.onrender.com/api/v1/areas",
+        getConfig()
+      )
+      .then((res) => setAreas(res.data))
+      .catch((err) => console.log(err));
+    axios
+      .get(
+        "https://employees-service-xh3x.onrender.com/api/v1/subareas",
+        getConfig()
+      )
+      .then((res) => setSubAreas(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    setSubareaFilter(
+      subareas?.filter((element) => element.area.name.includes(selectedArea))
+    );
+  }, [selectedArea]);
 
   const submit = (data) => {
     const URL = `https://employees-service-xh3x.onrender.com/api/v1/employees/my_employees/`;
-    console.log(data);
     axios
       .post(URL, data, getConfig())
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     reset({});
+  };
+
+  const selectedOption = () => {
+    const selectElement = document.getElementById("areas").value;
+    setSelectedArea(selectElement);
   };
 
   return (
@@ -121,24 +153,42 @@ const CreateEmployee = () => {
           </div>
           <div className="edit__div">
             <label className="login__label" htmlFor="address">
-              Area Id
+              Area
             </label>
+            <select name="areas" id="areas" onChange={selectedOption}>
+              {areas?.map((area) => (
+                <option value={area.name} key={area.id}>
+                  {area.name}
+                </option>
+              ))}
+            </select>
             <input
               {...register("areaId")}
               className="login__input"
               type="text"
               id="areaId"
+              style={{ display: "none" }}
+              value={"culo"}
             />
           </div>
           <div className="edit__div">
             <label className="login__label" htmlFor="address">
-              Subarea Id
+              Subarea
             </label>
+            <select name="subareas" id="subareas">
+              {subareaFilter?.map((subarea) => (
+                <option value={subarea.name} key={subarea.id}>
+                  {subarea.name}
+                </option>
+              ))}
+            </select>
             <input
               {...register("subareaId")}
               className="login__input"
               type="text"
               id="subareaId"
+              style={{ display: "none" }}
+              value={"culo"}
             />
           </div>
 
