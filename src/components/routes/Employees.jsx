@@ -88,13 +88,15 @@ const Employees = () => {
         </NavLink>
       </div>
       <div className="employee__card">
-        {filter
-          ? filter?.map((employee) => (
-              <EmployeeCard key={employee.id} employee={employee} />
-            ))
-          : employees?.map((employee) => (
-              <EmployeeCard key={employee.id} employee={employee} />
-            ))}
+        <div className="employee__card-div">
+          {filter
+            ? filter?.map((employee) => (
+                <EmployeeCard key={employee.id} employee={employee} />
+              ))
+            : employees?.map((employee) => (
+                <EmployeeCard key={employee.id} employee={employee} />
+              ))}
+        </div>
       </div>
       <div className="button__container">
         <button className="prev" onClick={prevPage}>

@@ -19,19 +19,21 @@ const CreateEmployee = () => {
       )
       .then((res) => setAreas(res.data))
       .catch((err) => console.log(err));
+
     axios
       .get(
         "https://employees-service-xh3x.onrender.com/api/v1/subareas",
         getConfig()
       )
-      .then((res) => setSubAreas(res.data))
+      .then(
+        (res) => setSubAreas(res.data),
+        setSubareaFilter(
+          subareas?.filter((element) =>
+            element.area.name.includes(selectedArea)
+          )
+        )
+      )
       .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    setSubareaFilter(
-      subareas?.filter((element) => element.area.name.includes(selectedArea))
-    );
   }, [selectedArea]);
 
   const submit = (data) => {
@@ -119,6 +121,51 @@ const CreateEmployee = () => {
             />
           </div>
           <div className="edit__div">
+            <label className="login__label" htmlFor="address">
+              Address
+            </label>
+            <input
+              {...register("address")}
+              className="login__input"
+              type="text"
+              id="address"
+            />
+          </div>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="address">
+              Area
+            </label>
+            <select name="areas" id="areas" onChange={selectedOption}>
+              {areas?.map((area) => (
+                <option value={area.id} key={area.id} {...register("areaId")}>
+                  {area.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="edit__div">
+            <label className="login__label" htmlFor="address">
+              Subarea
+            </label>
+            <select name="subareas" id="subareas">
+              {subareaFilter
+                ? subareaFilter?.map((subarea) => (
+                    <option value={subarea.name} key={subarea.id}>
+                      {subarea.name}
+                    </option>
+                  ))
+                : subareas?.map((subarea) => (
+                    <option
+                      value={subarea.id}
+                      key={subarea.id}
+                      {...register("subareaId")}
+                    >
+                      {subarea.name}
+                    </option>
+                  ))}
+            </select>
+          </div>
+          <div className="edit__div">
             <label className="login__label" htmlFor="identificationCardType">
               Identification Card Type
             </label>
@@ -140,59 +187,12 @@ const CreateEmployee = () => {
               id="identificationCardNumber"
             />
           </div>
-          <div className="edit__div">
-            <label className="login__label" htmlFor="address">
-              Address
-            </label>
-            <input
-              {...register("address")}
-              className="login__input"
-              type="text"
-              id="address"
-            />
+          <div
+            className="edit__div"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <button style={{ width: "5em" }}>Create</button>
           </div>
-          <div className="edit__div">
-            <label className="login__label" htmlFor="address">
-              Area
-            </label>
-            <select name="areas" id="areas" onChange={selectedOption}>
-              {areas?.map((area) => (
-                <option value={area.name} key={area.id}>
-                  {area.name}
-                </option>
-              ))}
-            </select>
-            <input
-              {...register("areaId")}
-              className="login__input"
-              type="text"
-              id="areaId"
-              style={{ display: "none" }}
-              value={"culo"}
-            />
-          </div>
-          <div className="edit__div">
-            <label className="login__label" htmlFor="address">
-              Subarea
-            </label>
-            <select name="subareas" id="subareas">
-              {subareaFilter?.map((subarea) => (
-                <option value={subarea.name} key={subarea.id}>
-                  {subarea.name}
-                </option>
-              ))}
-            </select>
-            <input
-              {...register("subareaId")}
-              className="login__input"
-              type="text"
-              id="subareaId"
-              style={{ display: "none" }}
-              value={"culo"}
-            />
-          </div>
-
-          <button>Create</button>
         </form>
       </article>
     </div>
