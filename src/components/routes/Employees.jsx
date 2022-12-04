@@ -39,7 +39,7 @@ const Employees = () => {
   useEffect(() => {
     axios
       .get(
-        "https://employees-service-xh3x.onrender.com/api/v1/employees",
+        "https://employees-service-4g33.onrender.com/api/v1/employees",
         getConfig()
       )
       .then((res) => {
@@ -50,7 +50,7 @@ const Employees = () => {
 
     axios
       .get(
-        "https://employees-service-xh3x.onrender.com/api/v1/employees/no_pagination",
+        "https://employees-service-4g33.onrender.com/api/v1/employees/no_pagination",
         getConfig()
       )
       .then((res) => setAllEmployees(res.data))

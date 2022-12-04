@@ -7,7 +7,7 @@ import getConfig from "../../utils/getConfig";
 const UserForm = ({ userInfo, setIsloading }) => {
   const { handleSubmit, register, reset } = useForm();
   const [succesfull, setSuccesfull] = useState(false);
-  const URL = `https://employees-service-xh3x.onrender.com/api/v1/users/me`;
+  const URL = "https://employees-service-4g33.onrender.com/api/v1/users/me";
 
   const submit = (data) => {
     setIsloading(true);

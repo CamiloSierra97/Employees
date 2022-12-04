@@ -9,7 +9,7 @@ const EditEmployee = () => {
   const [thisEmployee, setThisEmployee] = useState();
   const [isloading, setIsloading] = useState(false);
   const parameter = useParams();
-  const URL = `https://employees-service-xh3x.onrender.com/api/v1/employees/${parameter.id}`;
+  const URL = `https://employees-service-4g33.onrender.com/api/v1/employees/${parameter.id}`;
 
   useEffect(() => {
     axios

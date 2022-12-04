@@ -1,7 +1,24 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import getConfig from "../../utils/getConfig";
 
 const EmployeeCard = ({ employee }) => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const userInfo = useSelector((state) => state.user);
+  if (userInfo?.role == "admin") {
+    setIsAdmin(true);
+  }
+
+  const deleteEmployee = () => {
+    const URL = `/api/v1/employees/${employee?.id}`;
+    axios
+      .delete(URL, employee.id, getConfig())
+      .then((res) => console.log(res))
+      .catch(console.log(err));
+  };
+
   return (
     <div className="employee__card-container">
       <article className="employee__card-article">
@@ -41,6 +58,13 @@ const EmployeeCard = ({ employee }) => {
       <NavLink to={`/employees/${employee.id}`}>
         <button>Update</button>
       </NavLink>
+      {isAdmin ? (
+        <NavLink>
+          <button onClick={deleteEmployee}>Delete</button>
+        </NavLink>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

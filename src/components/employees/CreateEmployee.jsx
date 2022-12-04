@@ -14,7 +14,7 @@ const CreateEmployee = () => {
   useEffect(() => {
     axios
       .get(
-        "https://employees-service-xh3x.onrender.com/api/v1/areas",
+        "https://employees-service-4g33.onrender.com/api/v1/areas",
         getConfig()
       )
       .then((res) => setAreas(res.data))
@@ -22,7 +22,7 @@ const CreateEmployee = () => {
 
     axios
       .get(
-        "https://employees-service-xh3x.onrender.com/api/v1/subareas",
+        "https://employees-service-4g33.onrender.com/api/v1/subareas",
         getConfig()
       )
       .then(
@@ -37,7 +37,8 @@ const CreateEmployee = () => {
   }, [selectedArea]);
 
   const submit = (data) => {
-    const URL = `https://employees-service-xh3x.onrender.com/api/v1/employees/my_employees/`;
+    const URL =
+      "https://employees-service-4g33.onrender.com/api/v1/employees/my_employees/";
     axios
       .post(URL, data, getConfig())
       .then((res) => console.log(res))

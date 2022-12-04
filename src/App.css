@@ -316,7 +316,6 @@ input[type="number"] {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
   width: 25%;
   background-color: #e0dada;
   padding: 2em;
