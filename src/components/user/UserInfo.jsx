@@ -1,11 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { getUserInfo } from "../../store/slices/user.slice.js";
 import Loader from "../loader/Loader.jsx";
 import Employees from "../routes/Employees.jsx";
 
 const UserInfo = () => {
+  const dispatch = useDispatch();
+
   const userInfo = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [userInfo]);
 
   return (
     <article className="article__container-main">

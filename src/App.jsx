@@ -3,21 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/shared/Navbar";
 import Home from "./components/routes/Home";
 import ProtectedRoutes from "./components/routes/ProtectedRoutes";
-import { useDispatch } from "react-redux";
-import { getUserInfo } from "./store/slices/user.slice";
-import { useEffect } from "react";
 import UserInfo from "./components/user/UserInfo";
 import EditMyUser from "./components/user/EditMyUser";
 import EditEmployee from "./components/employees/EditEmployee";
 import CreateEmployee from "./components/employees/CreateEmployee";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, []);
-
   return (
     <div className="App">
       <Navbar />

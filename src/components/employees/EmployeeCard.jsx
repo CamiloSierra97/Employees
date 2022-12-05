@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import getConfig from "../../utils/getConfig";
@@ -7,9 +7,13 @@ import getConfig from "../../utils/getConfig";
 const EmployeeCard = ({ employee }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const userInfo = useSelector((state) => state.user);
-  if (userInfo?.role == "admin") {
-    setIsAdmin(true);
-  }
+
+  useEffect(() => {
+    console.log(userInfo?.role == "admin");
+    if (userInfo?.role == "admin") {
+      setIsAdmin(true);
+    }
+  }, []);
 
   const deleteEmployee = () => {
     const URL = `/api/v1/employees/${employee?.id}`;

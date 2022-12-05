@@ -15,7 +15,7 @@ export const { setUser } = userSlice.actions;
 export default userSlice.reducer;
 
 export const getUserInfo = () => (dispatch) => {
-  const URL = "https://employees-service-xh3x.onrender.com/api/v1/users/me";
+  const URL = "https://employees-service-hnlj.onrender.com/api/v1/users/me";
   return axios
     .get(URL, getConfig())
     .then((res) => dispatch(setUser(res.data)))
