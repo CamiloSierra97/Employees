@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import getConfig from "../../utils/getConfig";
 import EmployeeCard from "../employees/EmployeeCard";
+import UserInfo from "../user/UserInfo";
 
 const Employees = () => {
   const [employees, setEmployees] = useState();
@@ -67,25 +68,28 @@ const Employees = () => {
 
   return (
     <>
-      <form>
-        <input
-          type="text"
-          placeholder="Identificacion Number"
-          onChange={numberTyping}
-        />
-      </form>
-      <div className="button__container">
-        <button className="prev" onClick={prevPage}>
-          PrevPage
-        </button>
-        <button className="next" onClick={nextPage}>
-          NextPage
-        </button>
-      </div>
-      <div className="button__container">
-        <NavLink to="/create_employee">
-          <button>Create Employee</button>
-        </NavLink>
+      <UserInfo />
+      <div className="form__continer">
+        <form>
+          <input
+            type="text"
+            placeholder="Identificacion Number"
+            onChange={numberTyping}
+          />
+        </form>
+        <div className="button__container">
+          <button className="prev" onClick={prevPage}>
+            PrevPage
+          </button>
+          <button className="next" onClick={nextPage}>
+            NextPage
+          </button>
+        </div>
+        <div className="button__container">
+          <NavLink to="/create_employee">
+            <button>Create Employee</button>
+          </NavLink>
+        </div>
       </div>
       <div className="employee__card">
         <div className="employee__card-div">

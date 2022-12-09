@@ -276,6 +276,13 @@ input[type="number"] {
   gap: 1em;
 }
 
+.form__continer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+}
+
 .edit__div {
   display: flex;
   justify-content: space-around;
@@ -302,6 +309,7 @@ input[type="number"] {
   display: flex;
   justify-content: center;
   margin-bottom: 6em;
+  width: 100vw;
 }
 
 .employee__card-div {
@@ -309,7 +317,6 @@ input[type="number"] {
   flex-wrap: wrap;
   justify-content: center;
   gap: 4em;
-  width: 95vw;
 }
 
 .employee__card-container {
@@ -337,6 +344,11 @@ input[type="number"] {
 
 .employee__card-items {
   margin: 8px;
+}
+
+.button__container {
+  width: 100vw;
+  padding-bottom: 3em;
 }
 
 ::-webkit-scrollbar {

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getUserInfo } from "../../store/slices/user.slice.js";
 import Loader from "../loader/Loader.jsx";
-import Employees from "../routes/Employees.jsx";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
@@ -54,7 +53,6 @@ const UserInfo = () => {
                 </NavLink>
               </article>
             </div>
-            <Employees />
           </article>
         </>
       ) : (

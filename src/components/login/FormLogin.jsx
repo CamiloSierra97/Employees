@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-const FormLogin = () => {
+const FormLogin = ({ setIsLogged }) => {
   const [showError, setShowError] = useState({
     visibility: "hidden",
   });
@@ -24,6 +24,7 @@ const FormLogin = () => {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         navigate("/me");
+        setIsLogged(true);
       })
       .catch((err) => {
         setShowError({
