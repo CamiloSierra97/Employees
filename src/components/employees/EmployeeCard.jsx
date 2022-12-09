@@ -4,23 +4,34 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import getConfig from "../../utils/getConfig";
 
-const EmployeeCard = ({ employee }) => {
+const EmployeeCard = ({ employee, setEmployees, setPagination }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const userInfo = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log(userInfo?.role == "admin");
     if (userInfo?.role == "admin") {
       setIsAdmin(true);
     }
   }, []);
 
   const deleteEmployee = () => {
-    const URL = `/api/v1/employees/${employee?.id}`;
+    const URL = `https://employees-service-hnlj.onrender.com/api/v1/employees/${employee?.id}`;
     axios
-      .delete(URL, employee.id, getConfig())
-      .then((res) => console.log(res))
-      .catch(console.log(err));
+      .delete(URL, getConfig())
+      .then(
+        (res) => console.log(res),
+        axios
+          .get(
+            "https://employees-service-hnlj.onrender.com/api/v1/employees",
+            getConfig()
+          )
+          .then((res) => {
+            setEmployees(res.data.results);
+            setPagination(res.data);
+          })
+          .catch((err) => console.log(err))
+      )
+      .catch((err) => console.log(err));
   };
 
   return (

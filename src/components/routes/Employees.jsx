@@ -91,10 +91,20 @@ const Employees = () => {
         <div className="employee__card-div">
           {filter
             ? filter?.map((employee) => (
-                <EmployeeCard key={employee.id} employee={employee} />
+                <EmployeeCard
+                  key={employee.id}
+                  employee={employee}
+                  setEmployees={setEmployees}
+                  setPagination={setPagination}
+                />
               ))
             : employees?.map((employee) => (
-                <EmployeeCard key={employee.id} employee={employee} />
+                <EmployeeCard
+                  key={employee.id}
+                  employee={employee}
+                  setEmployees={setEmployees}
+                  setPagination={setPagination}
+                />
               ))}
         </div>
       </div>
